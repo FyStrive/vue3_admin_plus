@@ -4,8 +4,8 @@ import { viteMockServe } from 'vite-plugin-mock'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 // https://vitejs.dev/config/
-export default defineConfig( ({ command }) => {
-  return   {
+export default defineConfig(({ command }) => {
+  return {
     plugins: [
       vue(),
       createSvgIconsPlugin({
@@ -14,7 +14,7 @@ export default defineConfig( ({ command }) => {
       }),
       viteMockServe({
         localEnabled: command === 'serve',
-      })
+      }),
     ],
     resolve: {
       alias: {
@@ -31,5 +31,4 @@ export default defineConfig( ({ command }) => {
       },
     },
   }
-}
-)
+})

@@ -1,10 +1,4 @@
-<template>
-home
-</template>
+<template>home</template>
 
-<script setup lang='ts'>
-
-</script>
-<style scoped lang='less'>
-
-</style>
+<script setup lang="ts"></script>
+<style scoped lang="less"></style>

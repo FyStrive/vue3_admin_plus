@@ -8,8 +8,8 @@
     "noImplicitAny": false,
 
     /* Bundler mode */
-    "moduleResolution": "node",//ts5.0以上应为node 之前是bundler
-    "types": ["element-plus/global"],//解决按需引入element报红
+    "moduleResolution": "node", //ts5.0以上应为node 之前是bundler
+    "types": ["element-plus/global"], //解决按需引入element报红
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
