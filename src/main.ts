@@ -15,6 +15,8 @@ import 'virtual:svg-icons-register'
 import globalComponent from '@/components'
 // 引入pinia仓库
 import pinia from './store'
+// 引入全局路由守卫鉴权
+import './permission.ts'
 // 获得应用实例
 const app = createApp(App)
 app.use(ElementPlus)

@@ -24,6 +24,7 @@
     "element-plus": "^2.3.4",
     "mockjs": "^1.1.0",
     "moment": "^2.29.0",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.34",
     "vite-plugin-mock": "2.9.6",
     "vue": "^3.2.47",

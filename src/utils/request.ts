@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 // 利用axios对象的create方法创建一个实例
-
+import useUserStore from '@/store/module/user.ts'
 let request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000,
@@ -11,6 +11,10 @@ let request = axios.create({
 // 配置请求拦截器
 request.interceptors.request.use((config) => {
   //config配置对象，headers属性请求头，经常用来给服务器携带参数
+  let userStore = useUserStore()
+  if(userStore.token){
+    config.headers.token = userStore.token
+  }
   return config
 })
 

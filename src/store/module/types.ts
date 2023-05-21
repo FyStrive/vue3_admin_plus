@@ -3,4 +3,6 @@ import type { RouteRecordRaw } from 'vue-router'
 export interface userStoreType {
   token: string | null
   routeMenus: RouteRecordRaw[]
+  avatar:string
+  username:string
 }

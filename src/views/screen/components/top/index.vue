@@ -1,6 +1,7 @@
 <template>
   <div class="top">
     <div class="left">
+      <el-button color="transparent" icon="FullScreen" size="large" @click="fullScreen"></el-button>
       <span class="lbtn" @click="goHome">首页</span>
     </div>
     <div class="center">
@@ -39,6 +40,17 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearInterval(timer.value)
 })
+const fullScreen = () => {
+  // DOM身上的一个属性，可以用来判断当前是否是全屏状态
+  let full = document.fullscreenElement
+  if(!full){
+    //文档的根节点的方法requestFullscreen可以可以实现全屏
+    document.documentElement.requestFullscreen()
+  }else {
+    // 退出全屏
+    document.exitFullscreen()
+  }
+}
 </script>
 
 <style scoped lang="scss">

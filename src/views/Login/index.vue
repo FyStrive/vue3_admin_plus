@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter,useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time.ts'
 // 引入用户相关的小仓库
@@ -53,7 +53,7 @@ import useUserStore from '@/store/module/user'
 let useStore = useUserStore()
 // 获取路由器
 let $router = useRouter()
-
+let $route = useRoute()
 // 获取表单组件实例 通过ref
 let loginFormRef = ref()
 //控制登录按钮loading效果
@@ -73,10 +73,10 @@ const validateUsername = (rule: any, value: any, callback: any) => {
 // callback:符合条件callback放行  不符合注入错误提示信息
 const validatePassword = (rule: any, value: any, callback: any) => {
   // console.log(rule,value,callback);
-  if (value.length >= 6 && value.length < 10) {
+  if (value.length >= 6 && value.length < 12) {
     callback()
   } else {
-    callback(new Error('密码应在6-10位之间'))
+    callback(new Error('密码应在6-12位之间'))
   }
 }
 // 定义表单检验规则
@@ -95,7 +95,8 @@ const login = async () => {
   loading.value = true
   try {
     await useStore.userLogin(loginForm)
-    $router.push('/')
+    let redirect = $route.query.redirect as any
+    $router.push({path:redirect || '/'})
     ElNotification({
       type: 'success',
       message: '登录成功',
