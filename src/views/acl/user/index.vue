@@ -1,5 +1,5 @@
 <template>
-  <el-card style="height: 80px;">
+  <el-card style="height: 80px">
     <el-form :inline="true" class="form">
       <el-form-item label="用户名:">
         <el-input placeholder="请输入搜索用户名"></el-input>
@@ -10,32 +10,70 @@
       </el-form-item>
     </el-form>
   </el-card>
-  <el-card style="margin: 10px 0;">
+  <el-card style="margin: 10px 0">
     <el-button type="primary" @click="addUser">添加用户</el-button>
     <el-button type="primary">批量删除</el-button>
     <el-table border :data="userArr">
       <el-table-column type="selection" align="center"></el-table-column>
       <el-table-column label="#" align="center" type="index"></el-table-column>
       <el-table-column label="ID" align="center" prop="id"></el-table-column>
-      <el-table-column label="用户名字" align="center" prop="username"></el-table-column>
-      <el-table-column label="用户名称" align="center" prop="name"></el-table-column>
-      <el-table-column label="用户角色" align="center" prop="roleName" show-overflow-tooltip></el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" show-overflow-tooltip></el-table-column>
-      <el-table-column label="更新时间" align="center" prop="updateTime" show-overflow-tooltip></el-table-column>
+      <el-table-column
+        label="用户名字"
+        align="center"
+        prop="username"
+      ></el-table-column>
+      <el-table-column
+        label="用户名称"
+        align="center"
+        prop="name"
+      ></el-table-column>
+      <el-table-column
+        label="用户角色"
+        align="center"
+        prop="roleName"
+        show-overflow-tooltip
+      ></el-table-column>
+      <el-table-column
+        label="创建时间"
+        align="center"
+        prop="createTime"
+        show-overflow-tooltip
+      ></el-table-column>
+      <el-table-column
+        label="更新时间"
+        align="center"
+        prop="updateTime"
+        show-overflow-tooltip
+      ></el-table-column>
       <el-table-column label="操作" align="center" width="280px">
         <template #="{ row, $index }">
           <el-button type="primary" size="small" icon="User">
-            分配角色</el-button>
-          <el-button type="primary" size="small" icon="Edit" @click="updateUser(row)">编辑</el-button>
+            分配角色
+          </el-button>
+          <el-button
+            type="primary"
+            size="small"
+            icon="Edit"
+            @click="updateUser(row)"
+          >
+            编辑
+          </el-button>
           <el-button type="primary" size="small" icon="Delete">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <!-- 分页器 -->
-    <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[5, 7, 9, 11]"
-      :background="true" layout="prev, pager, next, jumper,->,total, sizes" :total="total" @current-change="getHasUser"
-      @size-change="handler" />
+    <el-pagination
+      v-model:current-page="currentPage"
+      v-model:page-size="pageSize"
+      :page-sizes="[5, 7, 9, 11]"
+      :background="true"
+      layout="prev, pager, next, jumper,->,total, sizes"
+      :total="total"
+      @current-change="getHasUser"
+      @size-change="handler"
+    />
   </el-card>
 
   <!-- 添加用户|编辑用户的抽屉 -->
@@ -47,13 +85,22 @@
       <div>
         <el-form :model="userPrama" :rules="rules">
           <el-form-item label="用户姓名:" prop="name">
-            <el-input placeholder="请输入用户姓名" v-model="userPrama.name"></el-input>
+            <el-input
+              placeholder="请输入用户姓名"
+              v-model="userPrama.name"
+            ></el-input>
           </el-form-item>
           <el-form-item label="用户昵称:" prop="username">
-            <el-input placeholder="请输入用户昵称" v-model="userPrama.username"></el-input>
+            <el-input
+              placeholder="请输入用户昵称"
+              v-model="userPrama.username"
+            ></el-input>
           </el-form-item>
           <el-form-item label="用户密码:" prop="password">
-            <el-input placeholder="请输入用户密码" v-model="userPrama.password"></el-input>
+            <el-input
+              placeholder="请输入用户密码"
+              v-model="userPrama.password"
+            ></el-input>
           </el-form-item>
         </el-form>
       </div>
@@ -70,7 +117,7 @@
 <script setup lang="ts">
 import { reqAllUserInfo, reqAddOrUpdateUser } from '@/api/acl/user/index.ts'
 import type { UserResponseData, Records, User } from '@/api/acl/user/type.ts'
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 import { ref, onMounted, reactive } from 'vue'
 // 当前的页数
 let currentPage = ref<number>(1)
@@ -87,7 +134,7 @@ let userPrama = reactive<User>({
   username: '',
   name: '',
   password: '',
-  id: undefined
+  id: undefined,
 })
 onMounted(() => {
   getHasUser()
@@ -96,7 +143,10 @@ onMounted(() => {
 const getHasUser = async (pager = 1) => {
   // 收集当前页码
   currentPage.value = pager
-  let result: UserResponseData = await reqAllUserInfo(currentPage.value, pageSize.value)
+  let result: UserResponseData = await reqAllUserInfo(
+    currentPage.value,
+    pageSize.value,
+  )
   if (result.code === 200) {
     total.value = result.data.total
     userArr.value = result.data.records
@@ -114,7 +164,7 @@ const addUser = () => {
     username: '',
     name: '',
     password: '',
-    id: undefined
+    id: undefined,
   })
 }
 // row为用户的信息
@@ -127,15 +177,21 @@ const updateUser = (row: User) => {
 // 保存的回调
 const save = async () => {
   let result: any = await reqAddOrUpdateUser(userPrama)
-  console.log(result);
+  console.log(result)
   if (result.code === 200) {
-    drawer.value = false//关闭抽屉
-    ElMessage({ type: 'success', message: userPrama.id ? '更新成功!' : '添加成功!' })
+    drawer.value = false //关闭抽屉
+    ElMessage({
+      type: 'success',
+      message: userPrama.id ? '更新成功!' : '添加成功!',
+    })
     // 获取最新表格数据
     getHasUser()
   } else {
     drawer.value = false
-    ElMessage({ type: 'error', message: userPrama.id ? '更新失败!' : '添加失败!' })
+    ElMessage({
+      type: 'error',
+      message: userPrama.id ? '更新失败!' : '添加失败!',
+    })
   }
 }
 const cancel = () => {
@@ -147,7 +203,6 @@ const validatorName = (rule: any, value: any, callback: any) => {
   } else {
     callback(new Error('用户姓名长度至少五位'))
   }
-
 }
 const validatorUserName = (rule: any, value: any, callback: any) => {
   if (value.trim().length >= 5) {
@@ -155,7 +210,6 @@ const validatorUserName = (rule: any, value: any, callback: any) => {
   } else {
     callback(new Error('用户昵称长度至少五位'))
   }
-
 }
 const validatorPassword = (rule: any, value: any, callback: any) => {
   if (value.trim().length >= 6) {
@@ -163,12 +217,11 @@ const validatorPassword = (rule: any, value: any, callback: any) => {
   } else {
     callback(new Error('用户密码长度至少六位'))
   }
-
 }
 const rules = {
   name: [{ required: true, trigger: 'blur', validator: validatorName }],
   username: [{ required: true, trigger: 'blur', validator: validatorUserName }],
-  password: [{ required: true, trigger: 'blur', validator: validatorPassword }]
+  password: [{ required: true, trigger: 'blur', validator: validatorPassword }],
 }
 </script>
 <style scoped lang="scss">
