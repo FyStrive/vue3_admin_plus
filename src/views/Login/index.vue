@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
-import { useRouter,useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { ElNotification } from 'element-plus'
 import { getTime } from '@/utils/time.ts'
 // 引入用户相关的小仓库
@@ -96,7 +96,7 @@ const login = async () => {
   try {
     await useStore.userLogin(loginForm)
     let redirect = $route.query.redirect as any
-    $router.push({path:redirect || '/'})
+    $router.push({ path: redirect || '/' })
     ElNotification({
       type: 'success',
       message: '登录成功',

@@ -1,7 +1,11 @@
 // 创建用户相关的仓库
 import { defineStore } from 'pinia'
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user'
-import type { loginFormData, loginResponseData, userInfoResponseData } from '@/api/user/type.ts'
+import type {
+  loginFormData,
+  loginResponseData,
+  userInfoResponseData,
+} from '@/api/user/type.ts'
 import { userStoreType } from './types.ts'
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token.ts'
 // 引入常量路由
@@ -13,7 +17,7 @@ let useUserStore = defineStore('User', {
       token: GET_TOKEN(), //用户唯一表示token
       routeMenus: constantRoute, //仓库存储生成菜单需要数组(路由)
       avatar: '',
-      username: ''
+      username: '',
     }
   },
 
@@ -34,8 +38,8 @@ let useUserStore = defineStore('User', {
     },
     // 获取用户信息
     async userInfo() {
-      let result:userInfoResponseData = await reqUserInfo()
-      console.log(result);
+      let result: userInfoResponseData = await reqUserInfo()
+      console.log(result)
       if (result.code === 200) {
         this.avatar = result.data.avatar
         this.username = result.data.name
@@ -45,17 +49,17 @@ let useUserStore = defineStore('User', {
       }
     },
     async logout() {
-      let result:any = await reqLogout()
+      let result: any = await reqLogout()
       if (result.code === 200) {
         this.avatar = ''
         this.username = ''
         REMOVE_TOKEN()
         this.token = ''
         return '退出登录成功!'
-      }else{
+      } else {
         return Promise.reject(new Error(result.message))
       }
-    }
+    },
   },
   getters: {},
 })

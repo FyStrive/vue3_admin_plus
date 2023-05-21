@@ -12,7 +12,7 @@ let request = axios.create({
 request.interceptors.request.use((config) => {
   //config配置对象，headers属性请求头，经常用来给服务器携带参数
   let userStore = useUserStore()
-  if(userStore.token){
+  if (userStore.token) {
     config.headers.token = userStore.token
   }
   return config
