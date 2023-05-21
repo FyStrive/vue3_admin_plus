@@ -4,11 +4,14 @@ import { reqLogin } from '@/api/user'
 import { loginForm, loginResponseData } from '@/api/user/type'
 import { userStoreType } from './types.ts'
 import { SET_TOKEN, GET_TOKEN } from '@/utils/token.ts'
+// 引入常量路由
+import { constantRoute } from '@/router/routes.ts'
 // 创建用户仓库
 let useUserStore = defineStore('User', {
   state: (): userStoreType => {
     return {
-      token: GET_TOKEN(),
+      token: GET_TOKEN(),//用户唯一表示token
+      routeMenus:constantRoute//仓库存储生成菜单需要数组(路由)
     }
   },
 
