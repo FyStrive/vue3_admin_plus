@@ -10,8 +10,8 @@ import { constantRoute } from '@/router/routes.ts'
 let useUserStore = defineStore('User', {
   state: (): userStoreType => {
     return {
-      token: GET_TOKEN(),//用户唯一表示token
-      routeMenus:constantRoute//仓库存储生成菜单需要数组(路由)
+      token: GET_TOKEN(), //用户唯一表示token
+      routeMenus: constantRoute, //仓库存储生成菜单需要数组(路由)
     }
   },
 

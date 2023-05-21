@@ -7,79 +7,79 @@ export const constantRoute = [
     component: () => import('@/views/Login/index.vue'),
     name: 'login',
     meta: {
-      title: '登录', hidden:true,
-      icon: 'Promotion'//菜单文字左侧的图标
-    }
+      title: '登录',
+      hidden: true,
+      icon: 'Promotion', //菜单文字左侧的图标
+    },
   },
   {
     //首页
     path: '/',
     component: () => import('@/layout/index.vue'),
     name: 'layout',
-    meta: { title: 'layout', hidden: false, icon:''},
-    redirect:'/home',
+    meta: { title: 'layout', hidden: false, icon: '' },
+    redirect: '/home',
     children: [
       {
         path: '/home',
         component: () => import('@/views/Home/index.vue'),
         nmae: 'home',
-        meta: { title: '首页', hidden: false, icon: 'HomeFilled' }
+        meta: { title: '首页', hidden: false, icon: 'HomeFilled' },
       },
-
-    ]
+    ],
   },
   {
-    path:'/screen',
-    component:() => import('@/views/screen/index.vue'),
-    name:'screen',
-    meta:{
-      title:'数据大屏',
-      hidden:false,
-      icon:'Platform'
-    }
-  },
-  {
-    path:'/acl',
-    component:() => import('@/layout/index.vue'),
-    name:'Acl',
-    redirect:'/acl/user',
-    meta:{
-      title:'权限管理',
-      hiddle:'false',
-      icon:'Lock'
+    path: '/screen',
+    component: () => import('@/views/screen/index.vue'),
+    name: 'screen',
+    meta: {
+      title: '数据大屏',
+      hidden: false,
+      icon: 'Platform',
     },
-    children:[
+  },
+  {
+    path: '/acl',
+    component: () => import('@/layout/index.vue'),
+    name: 'Acl',
+    redirect: '/acl/user',
+    meta: {
+      title: '权限管理',
+      hiddle: 'false',
+      icon: 'Lock',
+    },
+    children: [
       {
-        path:'/acl/user',
-        component:() => import('@/views/acl/user/index.vue'),
-        name:'User',
-        meta:{
-          title:'用户管理',
-          hidden:false,
-          icon:'User'
-        }
+        path: '/acl/user',
+        component: () => import('@/views/acl/user/index.vue'),
+        name: 'User',
+        meta: {
+          title: '用户管理',
+          hidden: false,
+          icon: 'User',
+        },
       },
       {
-        path:'/acl/role',
-        component:() => import('@/views/acl/role/index.vue'),
-        name:'Role',
-        meta:{
-          title:'角色管理',
-          hidden:false,
-          icon:'UserFilled'
-        }
+        path: '/acl/role',
+        component: () => import('@/views/acl/role/index.vue'),
+        name: 'Role',
+        meta: {
+          title: '角色管理',
+          hidden: false,
+          icon: 'UserFilled',
+        },
       },
       {
-        path:'/acl/permission',
-        component:() => import('@/views/acl/permission/index.vue'),
-        name:'Permission',
-        meta:{
-          title:'菜单管理',
-          hidden:false,
-          icon:'Monitor'
-        }
-      }
-    ]
+        path: '/acl/permission',
+        component: () => import('@/views/acl/permission/index.vue'),
+        name: 'Permission',
+        meta: {
+          title: '菜单管理',
+          hidden: false,
+          icon: 'Monitor',
+        },
+      },
+    ],
   },
   {
     path: '/product',
@@ -134,13 +134,13 @@ export const constantRoute = [
     path: '/404',
     component: () => import('@/views/404/index.vue'),
     name: '404',
-    meta: { title: '404', hidden: true, icon: 'DocumentDelete' }
+    meta: { title: '404', hidden: true, icon: 'DocumentDelete' },
   },
   {
     //任意路由
     path: '/:pathMatch(.*)*',
     redirect: '/404',
     name: 'Any',
-    meta: { title: '任意路由', hidden: true, icon: 'DataLine' }
+    meta: { title: '任意路由', hidden: true, icon: 'DataLine' },
   },
 ]

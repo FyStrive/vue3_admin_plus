@@ -1,8 +1,4 @@
-<template>
-    sku管理
-</template>
-    
-<script setup lang='ts'>
+<template>sku管理</template>
 
-</script>
-<style scoped lang='scss'></style>
+<script setup lang="ts"></script>
+<style scoped lang="scss"></style>
