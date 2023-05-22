@@ -6,7 +6,6 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "noImplicitAny": false,
-
     /* Bundler mode */
     "moduleResolution": "node", //ts5.0以上应为node 之前是bundler
     "types": ["element-plus/global"], //解决按需引入element报红
@@ -18,7 +17,7 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./", // 解析非相对模块的基地址，默认是当前目录
