@@ -1,34 +1,34 @@
 export interface ResponseData {
-    code:number,
-    message:string,
-    ok:boolean
+  code: number
+  message: string
+  ok: boolean
 }
 
 // 职位类型数据
 export interface RoleData {
-    id?:number,
-    createTime?:string,
-    updateTime?:string,
-    roleName:string,
-    remark?:null
+  id?: number
+  createTime?: string
+  updateTime?: string
+  roleName: string
+  remark?: null
 }
 
 // 全部职位的数据组的ts类型
-export type Records = RoleData []
+export type Records = RoleData[]
 
 // 全部职位数据的相应ts类型
 export interface RoleResponseDdata extends ResponseData {
-    data:{
-        records:Records,
-        total:number,
-        size:number,
-        current:number,
-        orders:[],
-        optimizeCountSql:boolean,
-        hitCount:boolean,
-        countId:null,
-        maxLimitL:null,
-        searchCount:boolean,
-        pages:number 
-    }
+  data: {
+    records: Records
+    total: number
+    size: number
+    current: number
+    orders: []
+    optimizeCountSql: boolean
+    hitCount: boolean
+    countId: null
+    maxLimitL: null
+    searchCount: boolean
+    pages: number
+  }
 }
