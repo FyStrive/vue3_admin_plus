@@ -39,6 +39,16 @@ export const constantRoute = [
     },
   },
   {
+    //404
+    path: '/404',
+    component: () => import('@/views/404/index.vue'),
+    name: '404',
+    meta: { title: '404', hidden: true, icon: 'DocumentDelete' },
+  },
+]
+// 异步路由  不同身份拥有不同的路由 最终跟后端返回的路由表进行对比决定一个用户可以看到那些路由
+export const asyncRoute = [
+  {
     path: '/acl',
     component: () => import('@/layout/index.vue'),
     name: 'Acl',
@@ -129,18 +139,14 @@ export const constantRoute = [
       },
     ],
   },
-  {
-    //404
-    path: '/404',
-    component: () => import('@/views/404/index.vue'),
-    name: '404',
-    meta: { title: '404', hidden: true, icon: 'DocumentDelete' },
-  },
+]
+// 任意路由 
+export const anyRoute = 
   {
     //任意路由
     path: '/:pathMatch(.*)*',
     redirect: '/404',
     name: 'Any',
     meta: { title: '任意路由', hidden: true, icon: 'DataLine' },
-  },
-]
+  }
+

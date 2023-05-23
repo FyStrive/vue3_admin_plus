@@ -129,8 +129,6 @@
             <el-input
               placeholder="请输入用户密码"
               v-model="userPrama.password"
-              type="password"
-              show-password
             ></el-input>
           </el-form-item>
         </el-form>

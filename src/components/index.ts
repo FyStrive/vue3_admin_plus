@@ -4,7 +4,7 @@ import { App } from 'vue'
 import SvgIcon from './SvgIcon.vue'
 // 引入element中所有icon图标
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-console.log(typeof SvgIcon)
+// console.log(typeof SvgIcon)
 //全局对象
 const allGloablComponent = { SvgIcon }
 

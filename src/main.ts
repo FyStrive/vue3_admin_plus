@@ -7,6 +7,8 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import App from '@/App.vue'
 // 引入路由
 import router from './router'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+// import './styles/dark/css-vars.css'
 //引入全局样式
 import '@/styles/index.scss'
 //配置使用svg图标

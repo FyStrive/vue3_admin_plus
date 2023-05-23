@@ -16,6 +16,9 @@ dependencies:
   element-plus:
     specifier: ^2.3.4
     version: registry.npmmirror.com/element-plus@2.3.4(vue@3.2.47)
+  lodash:
+    specifier: ^4.17.21
+    version: registry.npmmirror.com/lodash@4.17.21
   mockjs:
     specifier: ^1.1.0
     version: registry.npmmirror.com/mockjs@1.1.0

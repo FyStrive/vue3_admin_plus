@@ -27,6 +27,5 @@ const changeFold = () => {
   settingStore.fold = !settingStore.fold
 }
 let $route = useRoute()
-console.log($route)
 </script>
 <style scoped lang="scss"></style>

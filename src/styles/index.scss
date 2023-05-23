@@ -9,9 +9,9 @@
 ::-webkit-scrollbar-track {
     background: $base-menu-background;
 }
-
+//设置滚动条颜色
 ::-webkit-scrollbar-thumb {
     width: 11px;
-    background-color: yellowgreen;
+    background-color:#abc3e4;
     border-radius:8px ;
 }
