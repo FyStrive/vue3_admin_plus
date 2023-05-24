@@ -81,7 +81,7 @@ let useUserStore = defineStore('User', {
         this.username = ''
         REMOVE_TOKEN()
         this.token = ''
-        router.go(0);//清空路由
+        router.go(0) //清空路由
         return '退出登录成功!'
       } else {
         return Promise.reject(new Error(result.message))
