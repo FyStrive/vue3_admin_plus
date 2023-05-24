@@ -1,0 +1,17 @@
+//引入清楚默认样式
+@import './reset.scss';
+
+// 设置滚动条的外观;
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: $base-menu-background;
+}
+//设置滚动条颜色
+::-webkit-scrollbar-thumb {
+    width: 11px;
+    background-color:#abc3e4;
+    border-radius:8px ;
+}
