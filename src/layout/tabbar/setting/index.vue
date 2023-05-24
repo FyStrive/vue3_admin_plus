@@ -1,22 +1,48 @@
 <template>
-  <el-button circle icon="Refresh" size="small" @click="refreshUpdate"></el-button>
-  <el-button circle icon="FullScreen" size="small" @click="fullScreen"></el-button>
+  <el-button
+    circle
+    icon="Refresh"
+    size="small"
+    @click="refreshUpdate"
+  ></el-button>
+  <el-button
+    circle
+    icon="FullScreen"
+    size="small"
+    @click="fullScreen"
+  ></el-button>
   <!-- 主题模式的弹框 -->
   <el-popover placement="bottom" title="主题模式" :width="200" trigger="hover">
     <el-form>
       <el-form-item label="主题颜色">
-        <el-color-picker @change="setColor" v-model="color" size="small" show-alpha :predefine="predefineColors" />
+        <el-color-picker
+          @change="setColor"
+          v-model="color"
+          size="small"
+          show-alpha
+          :predefine="predefineColors"
+        />
       </el-form-item>
       <el-form-item label="暗黑模式">
-        <el-switch @change="changeDark" v-model="dark" class="mt-2" style="margin-left: 15px" inline-prompt active-icon="MoonNight"
-          inactive-icon="Sunny" />
+        <el-switch
+          @change="changeDark"
+          v-model="dark"
+          class="mt-2"
+          style="margin-left: 15px"
+          inline-prompt
+          active-icon="MoonNight"
+          inactive-icon="Sunny"
+        />
       </el-form-item>
     </el-form>
     <template #reference>
       <el-button circle icon="Setting" size="small"></el-button>
     </template>
   </el-popover>
-  <img :src="userStore.avatar" style="width: 24px; height: 24px; margin: 0 10px; border-radius: 50%" />
+  <img
+    :src="userStore.avatar"
+    style="width: 24px; height: 24px; margin: 0 10px; border-radius: 50%"
+  />
   <el-dropdown :hide-on-click="false" trigger="click">
     <span class="el-dropdown-link">
       {{ userStore.username }}
@@ -80,7 +106,7 @@ const predefineColors = ref([
 const changeDark = () => {
   let html = document.documentElement
   // 加上dark即实现切换
-  dark.value? html.className = 'dark':html.className=''
+  dark.value ? (html.className = 'dark') : (html.className = '')
 }
 let dark = ref<boolean>(false)
 const setColor = () => {

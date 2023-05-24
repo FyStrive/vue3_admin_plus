@@ -2,7 +2,10 @@
   <el-card style="height: 80px">
     <el-form :inline="true" class="form">
       <el-form-item label="职位搜索:">
-        <el-input placeholder="请输入搜索职位关键字" v-model="keyword"></el-input>
+        <el-input
+          placeholder="请输入搜索职位关键字"
+          v-model="keyword"
+        ></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="search">搜索</el-button>
@@ -16,20 +19,48 @@
       <el-table-column type="selection" align="center"></el-table-column>
       <el-table-column label="#" align="center" type="index"></el-table-column>
       <el-table-column label="ID" align="center" prop="id"></el-table-column>
-      <el-table-column label="职位名称" align="center" prop="roleName"></el-table-column>
-      <el-table-column label="创建时间" align="center" prop="createTime" show-overflow-tooltip></el-table-column>
-      <el-table-column label="更新时间" align="center" prop="updateTime" show-overflow-tooltip></el-table-column>
+      <el-table-column
+        label="职位名称"
+        align="center"
+        prop="roleName"
+      ></el-table-column>
+      <el-table-column
+        label="创建时间"
+        align="center"
+        prop="createTime"
+        show-overflow-tooltip
+      ></el-table-column>
+      <el-table-column
+        label="更新时间"
+        align="center"
+        prop="updateTime"
+        show-overflow-tooltip
+      ></el-table-column>
       <el-table-column label="操作" align="center" width="300px">
         <template #="{ row }">
-          <el-button type="primary" size="small" icon="User" @click="selectPower(row)">
+          <el-button
+            type="primary"
+            size="small"
+            icon="User"
+            @click="selectPower(row)"
+          >
             分配权限
           </el-button>
-          <el-button type="primary" size="small" icon="Edit" @click="updateRole(row)">
+          <el-button
+            type="primary"
+            size="small"
+            icon="Edit"
+            @click="updateRole(row)"
+          >
             编辑
           </el-button>
-          <el-popconfirm :title="`你确定删除${row.roleName}吗?`" width="260px" @confirm="deleteRole(row)">
+          <el-popconfirm
+            :title="`你确定删除${row.roleName}吗?`"
+            width="260px"
+            @confirm="deleteRole(row)"
+          >
             <template #reference>
-              <el-button type="primary" size="small" icon="Delete" >
+              <el-button type="primary" size="small" icon="Delete">
                 删除
               </el-button>
             </template>
@@ -39,16 +70,29 @@
     </el-table>
 
     <!-- 分页器 @current-change="getHasUser"-->
-    <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[5, 7, 9, 11]"
-      :background="true" layout="prev, pager, next, jumper,->,total, sizes" :total="total" @current-change="currentChange"
-      @size-change="sizeChange" />
+    <el-pagination
+      v-model:current-page="currentPage"
+      v-model:page-size="pageSize"
+      :page-sizes="[5, 7, 9, 11]"
+      :background="true"
+      layout="prev, pager, next, jumper,->,total, sizes"
+      :total="total"
+      @current-change="currentChange"
+      @size-change="sizeChange"
+    />
   </el-card>
 
   <!-- 新增职位与更新的弹框 -->
-  <el-dialog v-model="dialogVisite" :title="rolePramas.id ? '更新职位' : '添加职位'">
+  <el-dialog
+    v-model="dialogVisite"
+    :title="rolePramas.id ? '更新职位' : '添加职位'"
+  >
     <el-form :model="rolePramas" :rules="rules" ref="roleRef">
       <el-form-item label="职位名称:" prop="roleName">
-        <el-input placeholder="请输入添加的职位名称" v-model="rolePramas.roleName"></el-input>
+        <el-input
+          placeholder="请输入添加的职位名称"
+          v-model="rolePramas.roleName"
+        ></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -62,9 +106,15 @@
       <h2>分配权限</h2>
     </template>
     <template #default>
-      <el-tree ref="tree" show-checkbox node-key="id" :data="menuArr"  :default-checked-keys="IdArr"
-      :props="defaultProps" default-expand-all
-         />
+      <el-tree
+        ref="tree"
+        show-checkbox
+        node-key="id"
+        :data="menuArr"
+        :default-checked-keys="IdArr"
+        :props="defaultProps"
+        default-expand-all
+      />
     </template>
     <template #footer>
       <div style="flex: auto">
@@ -77,10 +127,16 @@
 
 <script setup lang="ts">
 import useLayoutSettingStore from '@/store/module/setting.ts'
-import { reqAllRoleList, reqAddOrUpdateRole,reqAllMenuList,reqSetPermission, reqRemoveRole } from '@/api/acl/role/index'
+import {
+  reqAllRoleList,
+  reqAddOrUpdateRole,
+  reqAllMenuList,
+  reqSetPermission,
+  reqRemoveRole,
+} from '@/api/acl/role/index'
 import type { RoleResponseDdata, Records } from '@/api/acl/role/type'
 import { ref, onMounted, reactive, nextTick } from 'vue'
-import { RoleData,MenuResponseData,MenuList } from '@/api/acl/role/type'
+import { RoleData, MenuResponseData, MenuList } from '@/api/acl/role/type'
 import { ElMessage } from 'element-plus'
 let drawer1 = ref<boolean>(false)
 //当前页
@@ -96,7 +152,7 @@ let keyword = ref<string>('')
 let dialogVisite = ref<boolean>(false)
 // 用来收集职位数据
 let rolePramas = reactive<RoleData>({
-  roleName: ''
+  roleName: '',
 })
 //拿到树形dom
 let tree = ref()
@@ -111,9 +167,13 @@ const validatorRoleName = (rule: any, value: any, callback: any) => {
 }
 // 添加职位表单的规则
 const rules = {
-  roleName: [{
-    required: true, trigger: 'blur', validator: validatorRoleName
-  }]
+  roleName: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatorRoleName,
+    },
+  ],
 }
 onMounted(() => {
   getHasRole()
@@ -177,7 +237,10 @@ const save = async () => {
   // 添加|gengxin
   let result: any = await reqAddOrUpdateRole(rolePramas)
   if (result.code == 200) {
-    ElMessage({ type: 'success', message: rolePramas.id ? '更新成功!' : '添加成功!' })
+    ElMessage({
+      type: 'success',
+      message: rolePramas.id ? '更新成功!' : '添加成功!',
+    })
     dialogVisite.value = false
     getHasRole(rolePramas.id ? currentPage.value : 1)
   }
@@ -186,36 +249,36 @@ const save = async () => {
 let menuArr = ref<MenuList>([])
 let IdArr = ref<number[]>([])
 // 分配权限的回调
-const selectPower = async(row:RoleData) => {
+const selectPower = async (row: RoleData) => {
   drawer1.value = true
   // 收集当前要分配权限的职位的数据
-  Object.assign(rolePramas,row)
+  Object.assign(rolePramas, row)
   IdArr.value = []
-  let result:MenuResponseData = await reqAllMenuList((rolePramas.id as number))
-  if(result.code === 200){
-    menuArr.value =result.data
-    IdArr.value = filterSelectArr(menuArr.value,[])
+  let result: MenuResponseData = await reqAllMenuList(rolePramas.id as number)
+  if (result.code === 200) {
+    menuArr.value = result.data
+    IdArr.value = filterSelectArr(menuArr.value, [])
   }
 }
 // 这个方法用来过滤出这个树形结构里面最底层里面勾选的ID(因为树形的特点，只需找出最底层已经的勾选上的就行了)
-const filterSelectArr = (allData:any,initArr:any) => {
-  allData.forEach(item => {
-    if(item.select && item.level === 4){
+const filterSelectArr = (allData: any, initArr: any) => {
+  allData.forEach((item) => {
+    if (item.select && item.level === 4) {
       initArr.push(item.id)
     }
-    if(item.children && item.children.length > 0){
-      filterSelectArr(item.children,initArr)
+    if (item.children && item.children.length > 0) {
+      filterSelectArr(item.children, initArr)
     }
-  })  
+  })
   return initArr
 }
 const defaultProps = {
   children: 'children',
-  label:'name'
+  label: 'name',
 }
 
 // 点击确认分配的回调
-const handler =async () => {
+const handler = async () => {
   let roleId = rolePramas.id
   // 选中结点的ID
   let arr = tree.value.getCheckedKeys()
@@ -223,23 +286,25 @@ const handler =async () => {
   let arr1 = tree.value.getHalfCheckedKeys()
   let permissionId = arr.concat(arr1)
   //下发权限
-  let result = await reqSetPermission((roleId as number),permissionId)
-  if(result.code === 200){
+  let result = await reqSetPermission(roleId as number, permissionId)
+  if (result.code === 200) {
     drawer1.value = false
     // getHasRole(currentPage.value)
     //应该重新刷新一下整个页面 因为权限改了 按钮权限等等会发生变化
-    ElMessage({type:'success',message:'分配权限成功!'})
+    ElMessage({ type: 'success', message: '分配权限成功!' })
     setTimeout(() => {
       window.location.reload()
-    },500)
+    }, 500)
   }
 }
 // 删除角色
-const deleteRole = async(row:RoleData) => {
-  let result = await reqRemoveRole((row.id as number))
-  if(result.code === 200){
-    ElMessage({type:'success',message:'删除成功!'})
-    getHasRole(allRole.value.length > 1? currentPage.value:currentPage.value - 1)
+const deleteRole = async (row: RoleData) => {
+  let result = await reqRemoveRole(row.id as number)
+  if (result.code === 200) {
+    ElMessage({ type: 'success', message: '删除成功!' })
+    getHasRole(
+      allRole.value.length > 1 ? currentPage.value : currentPage.value - 1,
+    )
   }
 }
 </script>

@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
           () => {
             // console.log(res,'res');
             //这样可以保证异步路由组件加载完毕再放行 不会出现白屏现象
-            next({...to})
+            next({ ...to })
           },
           () => {
             // 失败是因为token到期或者人为修改token

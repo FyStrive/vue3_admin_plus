@@ -9,17 +9,17 @@ import type {
 import { userStoreType } from './types.ts'
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token.ts'
 // 引入常量路由
-import { constantRoute,asyncRoute,anyRoute } from '@/router/routes.ts'
+import { constantRoute, asyncRoute, anyRoute } from '@/router/routes.ts'
 // 引入深拷贝
 //@ts-ignore
 import cloneDeep from 'lodash/cloneDeep'
 import router from '@/router/index.ts'
 //根据后端返回的路由表进行过滤得到用户的路由表
-function filterAsyncRoute(asyncRoute:any,routes:any){
-  return asyncRoute.filter(item => {
-    if(routes.includes(item.name)){
-      if(routes.children && routes.children.length > 1){
-        item.children =  filterAsyncRoute(item.children,routes)
+function filterAsyncRoute(asyncRoute: any, routes: any) {
+  return asyncRoute.filter((item) => {
+    if (routes.includes(item.name)) {
+      if (routes.children && routes.children.length > 1) {
+        item.children = filterAsyncRoute(item.children, routes)
       }
       return true
     }
@@ -59,11 +59,14 @@ let useUserStore = defineStore('User', {
         this.avatar = result.data.avatar
         this.username = result.data.name
         // 计算当前用户需要展示的异步路由
-        let userAsyncRoute = filterAsyncRoute(cloneDeep(asyncRoute),result.data.routes)
+        let userAsyncRoute = filterAsyncRoute(
+          cloneDeep(asyncRoute),
+          result.data.routes,
+        )
         // 左侧菜单需要展示的数据
-        this.routeMenus = [...constantRoute,...userAsyncRoute,anyRoute];
+        this.routeMenus = [...constantRoute, ...userAsyncRoute, anyRoute]
         // 动态往路由器里追加异步路由
-        [...userAsyncRoute,anyRoute].forEach((route:any) => {
+        ;[...userAsyncRoute, anyRoute].forEach((route: any) => {
           router.addRoute(route)
         })
         return '获取用户信息成功!'
@@ -78,6 +81,7 @@ let useUserStore = defineStore('User', {
         this.username = ''
         REMOVE_TOKEN()
         this.token = ''
+        router.go(0);//清空路由
         return '退出登录成功!'
       } else {
         return Promise.reject(new Error(result.message))

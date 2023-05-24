@@ -1,8 +1,8 @@
 <template>
-  <el-card style="height: 160px;" >
+  <el-card style="height: 160px">
     <div class="avatar">
       <div class="logo">
-        <img :src="userStore.avatar" alt="">
+        <img :src="userStore.avatar" alt="" />
       </div>
       <div class="title">
         <h3>Hi,{{ userStore.username }},{{ getTime() }}好呀</h3>
@@ -21,24 +21,24 @@ let userStore = useUserStore()
 <style scoped lang="scss">
 .avatar {
   display: flex;
-  .logo{
-    img{
+  .logo {
+    img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
     }
   }
-  .title{
-    h3{
+  .title {
+    h3 {
       font-size: 36px;
       margin-left: 20px;
       margin-top: 20px;
     }
-    span{
+    span {
       display: block;
       margin-top: 30px;
       margin-left: 60px;
-      font-style:italic;
+      font-style: italic;
       color: aquamarine;
     }
   }
