@@ -82,7 +82,7 @@ let $router = useRouter()
 let $route = useRoute()
 const logOut = async () => {
   await userStore.logout()
-  $router.push({ path: '/login', query: { redirect: $route.path } })
+  $router.push({ path: '/login' })
 }
 // 主题颜色相关值
 const color = ref('white')

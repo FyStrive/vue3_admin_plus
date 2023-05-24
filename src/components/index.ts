@@ -8,7 +8,7 @@ import Category from './Category/index.vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // console.log(typeof SvgIcon)
 //全局对象
-const allGloablComponent = { SvgIcon,Pagination, Category }
+const allGloablComponent = { SvgIcon, Pagination, Category }
 
 // 对外暴露插件对象 ，插件对象身上需有install方法
 export default {

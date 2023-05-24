@@ -94,7 +94,8 @@ const login = async () => {
   await loginFormRef.value.validate()
   loading.value = true
   try {
-    await useStore.userLogin(loginForm)
+    let result = await useStore.userLogin(loginForm)
+    console.log(result)
     let redirect = $route.query.redirect as any
     $router.push({ path: redirect || '/' })
     ElNotification({
@@ -104,10 +105,10 @@ const login = async () => {
     })
     loading.value = false
   } catch (error) {
-    console.log(error)
+    console.log(error, 'err')
     ElNotification({
       type: 'error',
-      message: (error as Error).message,
+      message: '密码或账号错误!',
     })
     loading.value = false
   }

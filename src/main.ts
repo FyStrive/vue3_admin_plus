@@ -32,5 +32,9 @@ app.use(ElementPlus, {
 
 // 注册模板路由
 app.use(router)
+// 引入自定义指令文件
+import { isHasButton } from './directive/has.ts'
+// 调用这个方法
+isHasButton(app)
 // 将实例挂载到根元素身上
 app.mount('#app')
